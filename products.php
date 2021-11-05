@@ -29,7 +29,7 @@
     <h1>KDS Hardware Store</h1>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">KDS Hardware</a>
+    <a class="navbar-brand" href="index.php">KDS Hardware</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -58,9 +58,38 @@
         <div>
             <ul>
                 <li><?= $row['category_name'] ?></li>
-            </ul>
+           
+             <small>
+                <a href="updatecategory.php?id=<?="{$row['id']}"?>">Update</a>
+            </small>
+             </ul>
         </div>
     <?php endwhile ?>
+     <footer>
+    <div class="conatiner" style="padding-top:80px; background-color:grey; margin-top:20px;">
+    <div class="row">
+    <div class="col" style="text-align: center;">
+      COMPANY
+        <div>
+            <a href="#">About Us</a>
+        </div>
+    </div>
+    <div class="col" style="text-align: center;">
+      CONTACT
+      <p>kdshardware2020@gmail.com</p>
+      <p>+204 453 6175</p>
+    </div>
+    <div class="col" style="text-align: center;">
+     ADDRESS
+     <p>
+        109 Princess Street</br>
+        Winnipeg MB</br>
+        R4B 1EX
+    </p>
+    </div>
+  </div>      
+    </div>
+ </footer>
 </body>
 </html>
 
