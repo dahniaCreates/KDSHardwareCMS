@@ -57,15 +57,20 @@
     <?php while($row = $statement->fetch()): ?>
         <div>
             <ul>
-                <li><?= $row['category_name'] ?></li>
+                <li><a href="items.php?id=<?="{$row['id']}"?>"><?= $row['category_name'] ?></a></li>
            
              <small>
                 <a href="updatecategory.php?id=<?="{$row['id']}"?>">Update</a>
             </small>
+            <small>
+                <a href="newproductinsert.php">New Product</a>
+            </small>
              </ul>
         </div>
     <?php endwhile ?>
-     <footer>
+    <a class="btn btn-primary" href="newcategory.php" role="button">New Category</a>
+
+    <footer>
     <div class="conatiner" style="padding-top:80px; background-color:grey; margin-top:20px;">
     <div class="row">
     <div class="col" style="text-align: center;">

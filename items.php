@@ -2,44 +2,46 @@
 
     Final Project
     Name: Dahnia Simon
-    Created on: November 4, 2021
-    Updated on: November 5, 2021
+    Created on: November 3, 2021
+    Updated on: November 3, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
     //Connection to the database
     require('connect.php');
+    
+    // /*Build and prepares SQL records for retrival in reverse chronological order and with
+    //   a limit of 5 records only. */
+    // $query = "SELECT * FROM products WHERE categoryId = 1 ORDER BY productName ASC";
+    // $statement = $db->prepare($query);
 
-    //Call to the script that ensures that the edit page is username and password protected.
-    require 'authenticate.php';
+    // //Executes the SELECT query.
+    // $statement->execute(); 
 
-        if (isset($_GET['id'])){// Retrieve the post to be edited based on the id value in the URL.
-        // Sanitize the id retrived from the URL using GET.
-        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-                    
-        /* Build the parametrized SQL query using the filtered id value and 
-        binding the placeholder to the filtered id value.*/
-        $query = "SELECT * FROM categories WHERE id = :id LIMIT 1";
-        $statement = $db->prepare($query);
-        //Specifies the $id binding-type to be Integer. 
-        $statement->bindValue(':id', $id, PDO::PARAM_INT);
-                    
-        // Execute the SELECT and fetch the single row returned.
-        $statement->execute();
-        $post = $statement->fetch();
-
-        //Check to ensure that the id value set in the URL returns a record from the database
-        if($statement->rowCount() == 0){
-        header("Location: products.php");//Redirects the user to the index page if invalid id number is set in URL.
+    if (isset($_GET['id'])) {
+      // Build and prepare SQL String with :id placeholder parameter.
+      $query = "SELECT * FROM products WHERE categoryId = :id";
+      $statement = $db->prepare($query);
+      
+      // Sanitize $_GET['id'] to ensure it's an integer.
+      $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+      
+      // Bind the :id parameter in the query to the sanitized
+      // $id specifying a binding-type of Integer.
+      $statement->bindValue('id', $id, PDO::PARAM_INT);
+      $statement->execute();
+      
+      //Ensures that the id specified in the GET returns at least one row.
+      if($statement->rowCount() == 0){
+        //Redirects the user to the index page if the id value is invalid.
+        header("Location: index.php");
         exit;
-        }
-    }
-    else{
-        $id = false; // Sets id to false if we are not UPDATING or SELECTING.
-    }
+      }
+  }
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <title>KDS Hardware Store</title>
@@ -73,24 +75,19 @@
 </nav>
 </head>
 <body>
-    <?php if($id): ?>
-            <form action="process_post.php" method="post">
-                <fieldset>
-                    <legend>Update or Delete Category</legend>
-                    <input type="hidden" name="id" value="<?= $post['id'] ?>">
-                    <p>
-                        <label for="category_name">Category Name</label>
-                        <input name="category_name" id="category_name" value="<?= $post['category_name'] ?>">
-                    </p>
-                    <p>
-                        <input type="submit" name="command" value="Update" />
-                        <!-- Delete button with javascript confirm message box to confirm delete.-->
-                        <input type="submit" name="command" value="Delete" onclick= "return confirm('Are you sure you wish to delete this category?')" />
-                    </p>
-                </fieldset>
-            </form>
-        <?php endif?>
- <footer>
+    <?php while($row = $statement->fetch()): ?>
+        <div>
+            <ul>
+                <li><?= $row['productName'] ?></li>
+                <li>$<?= $row['price'] ?></li>
+           
+             <small>
+                <a href="newproduct.php?categoryId=<?="{$row['categoryId']}"?>">Add Product</a>
+            </small>
+             </ul>
+        </div>
+    <?php endwhile ?>
+     <footer>
     <div class="conatiner" style="padding-top:80px; background-color:grey; margin-top:20px;">
     <div class="row">
     <div class="col" style="text-align: center;">
@@ -117,4 +114,5 @@
  </footer>
 </body>
 </html>
+
 
