@@ -31,10 +31,12 @@
       $statement->bindValue('id', $id, PDO::PARAM_INT);
       $statement->execute();
       
+      //$row = $statement->fetch();
+     // $categoryid = $row['categoryId'];
       //Ensures that the id specified in the GET returns at least one row.
       if($statement->rowCount() == 0){
         //Redirects the user to the index page if the id value is invalid.
-        header("Location: index.php");
+        header("Location: newproductinsert.php");
         exit;
       }
   }
@@ -80,13 +82,15 @@
             <ul>
                 <li><?= $row['productName'] ?></li>
                 <li>$<?= $row['price'] ?></li>
-           
-             <small>
-                <a href="newproduct.php?categoryId=<?="{$row['categoryId']}"?>">Add Product</a>
-            </small>
              </ul>
+              <small>
+                <a href="updateproducts.php?id=<?="{$row['id']}"?>">Update</a>
+            </small>
         </div>
     <?php endwhile ?>
+      <small>
+          <a href="newproduct.php?categoryId=<?="{$_GET['id']}"?>">Add Product</a>
+      </small>
      <footer>
     <div class="conatiner" style="padding-top:80px; background-color:grey; margin-top:20px;">
     <div class="row">

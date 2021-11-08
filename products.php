@@ -62,9 +62,6 @@
              <small>
                 <a href="updatecategory.php?id=<?="{$row['id']}"?>">Update</a>
             </small>
-            <small>
-                <a href="newproductinsert.php">New Product</a>
-            </small>
              </ul>
         </div>
     <?php endwhile ?>
