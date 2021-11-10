@@ -74,7 +74,7 @@
 </head>
 <body>
     <?php if($id): ?>
-            <form action="process_productupdate.php" method="post">
+            <form action="process_productupdate.php" method="post" enctype='multipart/form-data'>
                 <fieldset>
                     <legend>Update or Delete Product</legend>
                     <input type="hidden" name="id" value="<?= $post['id'] ?>">
@@ -88,6 +88,10 @@
                     </p>
                     <p>
                         <input type="hidden" name="categoryId" id="categoryId" value="<?= $post['categoryId'] ?>" readonly>
+                    </p>
+                    <p>
+                        <label for='uploadedfile'>Image filename:</label>
+                        <input type='file' name='uploadedfile' id='uploadedfile'>
                     </p>
                     <p>
                         <input type="submit" name="command" value="Update" />

@@ -10,18 +10,13 @@
     //Connection to the database
     require('connect.php');
     
-    // /*Build and prepares SQL records for retrival in reverse chronological order and with
-    //   a limit of 5 records only. */
-    // $query = "SELECT * FROM products WHERE categoryId = 1 ORDER BY productName ASC";
-    // $statement = $db->prepare($query);
-
-    // //Executes the SELECT query.
-    // $statement->execute(); 
-
     if (isset($_GET['id'])) {
       // Build and prepare SQL String with :id placeholder parameter.
       $query = "SELECT * FROM products WHERE categoryId = :id";
       $statement = $db->prepare($query);
+
+      $query_two = "SELECT * FROM categories WHERE id = :id";
+      $selection = $db->prepare($query_two);
       
       // Sanitize $_GET['id'] to ensure it's an integer.
       $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
@@ -29,10 +24,14 @@
       // Bind the :id parameter in the query to the sanitized
       // $id specifying a binding-type of Integer.
       $statement->bindValue('id', $id, PDO::PARAM_INT);
+      $selection->bindValue('id', $id, PDO::PARAM_INT);
+
       $statement->execute();
-      
-      //$row = $statement->fetch();
-     // $categoryid = $row['categoryId'];
+      $selection->execute();
+
+      $row_items = $selection->fetch();
+      $categoryname = $row_items['category_name'];
+
       //Ensures that the id specified in the GET returns at least one row.
       if($statement->rowCount() == 0){
         //Redirects the user to the index page if the id value is invalid.
@@ -48,7 +47,7 @@
     <meta charset="utf-8">
     <title>KDS Hardware Store</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="styles.css">
     <h1>KDS Hardware Store</h1>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -77,17 +76,27 @@
 </nav>
 </head>
 <body>
-    <?php while($row = $statement->fetch()): ?>
-        <div>
-            <ul>
-                <li><?= $row['productName'] ?></li>
-                <li>$<?= $row['price'] ?></li>
-             </ul>
-              <small>
+  <h2><?=$categoryname?></h2>
+   <div class= "row">
+        <?php while($row = $statement->fetch()): ?>
+        <div class="col-sm-4 mb-4">
+        <div class="card">
+        <a href="item.php?id=<?="{$row['id']}"?>">
+          <img class="card-img-top itemgallery" src="images/<?=$row['images']?>" alt="<?= $row['productName'] ?> Image">
+        </a>
+        <div class="card-body">
+        <!-- <h5 class="card-title"><a href="item.php?id=<?="{$row['id']}"?>"><?= $row['productName'] ?></a></h5> -->
+        <p><?= $row['productName'] ?></p>
+        <h5>$<?= $row['price'] ?></h5>
+          <small>
                 <a href="updateproducts.php?id=<?="{$row['id']}"?>">Update</a>
             </small>
-        </div>
-    <?php endwhile ?>
+      </div>
+      </div>
+      </div>
+      <?php endwhile ?>
+      </div>
+
       <small>
           <a href="newproduct.php?categoryId=<?="{$_GET['id']}"?>">Add Product</a>
       </small>

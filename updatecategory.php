@@ -13,8 +13,7 @@
     //Call to the script that ensures that the edit page is username and password protected.
     require 'authenticate.php';
 
-        if (isset($_GET['id'])){// Retrieve the post to be edited based on the id value in the URL.
-        // Sanitize the id retrived from the URL using GET.
+        if (isset($_GET['id'])){
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
                     
         /* Build the parametrized SQL query using the filtered id value and 
@@ -30,13 +29,15 @@
 
         //Check to ensure that the id value set in the URL returns a record from the database
         if($statement->rowCount() == 0){
-        header("Location: products.php");//Redirects the user to the index page if invalid id number is set in URL.
+        header("Location: products.php");
         exit;
         }
     }
     else{
         $id = false; // Sets id to false if we are not UPDATING or SELECTING.
     }
+
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +75,7 @@
 </head>
 <body>
     <?php if($id): ?>
-            <form action="process_post.php" method="post">
+            <form action="process_post.php" method="post" enctype='multipart/form-data'>
                 <fieldset>
                     <legend>Update or Delete Category</legend>
                     <input type="hidden" name="id" value="<?= $post['id'] ?>">
@@ -82,6 +83,11 @@
                         <label for="category_name">Category Name</label>
                         <input name="category_name" id="category_name" value="<?= $post['category_name'] ?>">
                     </p>
+                    <p>
+                        <label for='uploadedfile'>Image filename:</label>
+                        <input type='file' name='uploadedfile' id='uploadedfile'>
+                    </p>
+
                     <p>
                         <input type="submit" name="command" value="Update" />
                         <!-- Delete button with javascript confirm message box to confirm delete.-->

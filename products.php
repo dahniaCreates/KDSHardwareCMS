@@ -1,5 +1,4 @@
 <!--
-
     Final Project
     Name: Dahnia Simon
     Created on: November 3, 2021
@@ -25,6 +24,7 @@
     <meta charset="utf-8">
     <title>KDS Hardware Store</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
     
     <h1>KDS Hardware Store</h1>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -54,17 +54,26 @@
 </nav>
 </head>
 <body>
-    <?php while($row = $statement->fetch()): ?>
-        <div>
-            <ul>
-                <li><a href="items.php?id=<?="{$row['id']}"?>"><?= $row['category_name'] ?></a></li>
-           
-             <small>
-                <a href="updatecategory.php?id=<?="{$row['id']}"?>">Update</a>
-            </small>
-             </ul>
-        </div>
-    <?php endwhile ?>
+    
+      <div class= "row">
+        <?php while($row = $statement->fetch()): ?>
+        <div class="col-sm-4 mb-4">
+        <div class="card">
+        <a href="items.php?id=<?="{$row['id']}"?>">
+          <img class="card-img-top" src="images/<?=$row['images']?>" alt="<?= $row['category_name'] ?> Thumbnail Photo">
+        </a>
+        <div class="card-body">
+        <h5 class="card-title"><a href="items.php?id=<?="{$row['id']}"?>"><?= $row['category_name'] ?></a></h5>
+         <small>
+                <a href="updatecategory.php?id=<?="{$row['id']}"?>">Update Category</a>
+         </small>
+      </div>
+      </div>
+      </div>
+      <?php endwhile ?>
+      </div>
+
+
     <a class="btn btn-primary" href="newcategory.php" role="button">New Category</a>
 
     <footer>
@@ -94,5 +103,3 @@
  </footer>
 </body>
 </html>
-
-

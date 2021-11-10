@@ -11,12 +11,6 @@
   require ('authenticate.php');
    require('connect.php');
 
-  // $query = "SELECT * FROM categories WHERE categoryId = :categoryId";
-  // $statement = $db->prepare($query);
-
-  // //Executes the SELECT query.
-  // $statement->execute(); 
-
   if (isset($_GET['categoryId'])) {
       // Build and prepare SQL String with :id placeholder parameter.
       $query = "SELECT * FROM categories WHERE id = :categoryId";
