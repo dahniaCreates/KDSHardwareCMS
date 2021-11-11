@@ -2,23 +2,18 @@
 
     Final Project
     Name: Dahnia Simon
-    Created on: November 3, 2021
-    Updated on: November 3, 2021
+    Created on: November 10, 2021
+    Updated on: November 10, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
-    session_start();
     //Connection to the database
     require('connect.php');
-
     
     if (isset($_GET['id'])) {
       // Build and prepare SQL String with :id placeholder parameter.
-      $query = "SELECT * FROM products WHERE categoryId = :id";
+      $query = "SELECT * FROM products WHERE id = :id";
       $statement = $db->prepare($query);
-
-      $query_two = "SELECT * FROM categories WHERE id = :id";
-      $selection = $db->prepare($query_two);
       
       // Sanitize $_GET['id'] to ensure it's an integer.
       $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
@@ -26,13 +21,13 @@
       // Bind the :id parameter in the query to the sanitized
       // $id specifying a binding-type of Integer.
       $statement->bindValue('id', $id, PDO::PARAM_INT);
-      $selection->bindValue('id', $id, PDO::PARAM_INT);
+    
+      $statement->execute();      
 
-      $statement->execute();
-      $selection->execute();
-
-      $row_items = $selection->fetch();
-      $categoryname = $row_items['category_name'];
+      $row= $statement->fetch();
+      $image = $row['images'];
+      $productname = $row['productName'];
+      $price = $row['price'];
 
       //Ensures that the id specified in the GET returns at least one row.
       if($statement->rowCount() == 0){
@@ -78,35 +73,36 @@
 </nav>
 </head>
 <body>
-  <h2><?=$categoryname?></h2>
-   <div class= "row">
-        <?php while($row = $statement->fetch()): ?>
-        <div class="col-sm-4 mb-4">
-        <div class="card imagegallery">
-        <a href="item.php?id=<?="{$row['id']}"?>">
-          <img class="card-img-top" src="images/<?=$row['images']?>" alt="<?= $row['productName'] ?> Image">
-        </a>
-        <div class="card-body">
-        <a href="item.php?id=<?="{$row['id']}"?>">
-          <p><?= $row['productName'] ?></p>
-        </a>
-        <h5>$<?= $row['price'] ?></h5>
-         <?php if(isset($_SESSION['user'])): ?>
-          <small>
-                <a href="updateproducts.php?id=<?="{$row['id']}"?>">Update</a>
-            </small>
-          <?php endif?>
-      </div>
-      </div>
-      </div>
-      <?php endwhile ?>
-      </div>
-
-        <?php if(isset($_SESSION['user'])): ?>
-      <small>
-          <a role="button" class="btn btn-primary" href="newproduct.php?categoryId=<?="{$_GET['id']}"?>">Add Product</a>
-      </small>
-    <?php endif?>
+  <div class="container" style="margin-top: 100px">
+    <div class="row justify-content-md-center">
+        <div class="col">
+            <img class="singleitemimage" src="images/<?=$image?>" alt="<?= $productname ?> Image">
+        </div>
+        <div class="col singleitemcontainer">
+               <p class="singleitemproductname"><?= $productname?></p>
+              <h3>$<?= $price ?><sub>each</sub></h3>
+              <form class="quantityform">
+                <label>Qty</label>
+                <input type="text" name="quantity" list="quantity">
+                <datalist id="quantity">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </datalist>
+            </form>
+            <div class="orderbutton">
+                <button type="submit" class="btn btn-primary">Add to order</button>
+            </div>
+        </div>
+    </div>
+</div>
      <footer>
     <div class="conatiner" style="padding-top:80px; background-color:grey; margin-top:20px;">
     <div class="row">
@@ -134,5 +130,3 @@
  </footer>
 </body>
 </html>
-
-

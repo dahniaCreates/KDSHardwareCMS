@@ -48,13 +48,17 @@
 	         	$new_file_path        = file_upload_path($file_filename);
 	         	if (file_is_valid($temporary_image_path, $new_file_path)) {
 	            	if(move_uploaded_file($temporary_image_path, $new_file_path)){
-	            
+	            		
 			            require('connect.php');
+			           	$image = new \Gumlet\ImageResize($_FILES['uploadedfile']['name']);
+	        			$image->resize(300, 300);
+	        			$image_filename_edited = pathinfo($_FILES['uploadedfile']['name'], PATHINFO_FILENAME). "_categorythumbnail." . pathinfo($_FILES['uploadedfile']['name'], PATHINFO_EXTENSION);
+	            		$image->save('images/'.$image_filename_edited);
 			            // Build the parameterized SQL query and bind to the above sanitized values.
 			            $query     = "UPDATE categories SET category_name = :categoryname, images = :images WHERE id = :id LIMIT 1";
 			            $statement = $db->prepare($query);
 			            $statement->bindValue(':categoryname', $categoryname);
-			            $statement->bindValue(":images", $file_filename);        
+			            $statement->bindValue(":images", $image_filename_edited);        
 			            $statement->bindValue(':id', $id, PDO::PARAM_INT);
 			            
 			            // Execute the INSERT.

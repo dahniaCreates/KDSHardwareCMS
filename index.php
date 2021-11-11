@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 1, 2021
-    Updated on: November 7, 2021
+    Updated on: November 10, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -62,7 +62,7 @@
             The KDS Hardware prides itself on supplying difficult to find products to meet all the needs its customers.</br>
             We carry items to improve every room in your homes; from gardening supplies, to lumber, paints, tools, fixtures and more. 
             <div style="margin-top: 60px;">
-                <button type="button" class="btn btn-primary" style="padding:12px;">Shop Now</button>
+                <a role="button" href="products.php" class="btn btn-primary" style="padding:12px;">Shop Now</a>
             </div>
 
         </div>
@@ -70,6 +70,7 @@
                <img src="images/lumberstackmain.jpg" alt="lumber stack" style="width:100%; height: 400px; padding-left: 60px;"/>  
         </div>
     </div>
+</div>
  <footer>
     <div class="conatiner" style="padding-top:80px; background-color:grey; margin-top:20px;">
     <div class="row">
@@ -95,6 +96,5 @@
   </div>      
     </div>
  </footer>
-</div>
 </body>
 </html>

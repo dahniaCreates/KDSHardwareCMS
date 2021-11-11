@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 7, 2021
-    Updated on: November 7, 2021
+    Updated on: November 10, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 
@@ -15,7 +15,7 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
     $user_password=$_POST['password'];  
   
     require('connect.php');
-
+    
     $query= "SELECT * FROM users";  
     $statement = $db->prepare($query);
     $statement->execute();
@@ -26,14 +26,15 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
       while($row = $statement->fetch())  
       {  
         $stored_username=$row['username'];  
-        $stored_password=$row['password'];  
+        $stored_password=$row['password']; 
+        $stored_role = $row['usertype']; 
       }  
     
       if($user_username == $stored_username && $user_password == $stored_password)  
       {  
         session_start();  
-        $_SESSION['user']=$user_username;  
-    
+        $_SESSION['user']=$user_username; 
+        $_SESSION['role']= $stored_role; 
       /* Redirect browser */  
       header("Location: index.php");
       exit;  

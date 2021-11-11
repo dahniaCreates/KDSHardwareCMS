@@ -6,6 +6,7 @@
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
+    session_start();
     //Connection to the database
     require('connect.php');
     
@@ -58,24 +59,26 @@
       <div class= "row">
         <?php while($row = $statement->fetch()): ?>
         <div class="col-sm-4 mb-4">
-        <div class="card">
+        <div class="card imagegallery">
         <a href="items.php?id=<?="{$row['id']}"?>">
           <img class="card-img-top" src="images/<?=$row['images']?>" alt="<?= $row['category_name'] ?> Thumbnail Photo">
         </a>
         <div class="card-body">
         <h5 class="card-title"><a href="items.php?id=<?="{$row['id']}"?>"><?= $row['category_name'] ?></a></h5>
-         <small>
+         <?php if(isset($_SESSION['user'])): ?>
+           <small>
                 <a href="updatecategory.php?id=<?="{$row['id']}"?>">Update Category</a>
-         </small>
+           </small>
+         <?php endif?>
       </div>
       </div>
       </div>
       <?php endwhile ?>
       </div>
 
-
+        <?php if(isset($_SESSION['user'])): ?>
     <a class="btn btn-primary" href="newcategory.php" role="button">New Category</a>
-
+  <?php endif?>
     <footer>
     <div class="conatiner" style="padding-top:80px; background-color:grey; margin-top:20px;">
     <div class="row">

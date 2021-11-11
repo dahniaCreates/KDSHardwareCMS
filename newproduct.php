@@ -49,7 +49,7 @@
   <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-      <form method="post" action="processnewproduct.php">
+      <form method="post" action="processnewproduct.php" enctype='multipart/form-data'>
           <fieldset>
             <legend>Create New Product for <?=$categoryName?></legend>
               <p>
@@ -59,6 +59,10 @@
                <p>
                 <label for="price">Price</label>
                 <input name="price" id="price" />
+              </p>
+              <p>
+                <label for='uploadedfile'>Image filename:</label>
+                <input type='file' name='uploadedfile' id='uploadedfile'>
               </p>
               <input type="hidden" name="categoryId" id="categoryId" value="<?=$categoryId?>" readonly/>
               <p>

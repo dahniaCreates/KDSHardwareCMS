@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 6, 2021
-    Updated on: November 6, 2021
+    Updated on: November 10, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -18,12 +18,16 @@
   <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-      <form method="post" action="processnewcategory.php">
+      <form method="post" action="processnewcategory.php" enctype='multipart/form-data'>
           <fieldset>
             <legend>Create New Product Category</legend>
               <p>
                 <label for="category_name">Category Name</label>
                 <input name="category_name" id="category_name" />
+              </p>
+              <p>
+                <label for='uploadedfile'>Image filename:</label>
+                <input type='file' name='uploadedfile' id='uploadedfile'>
               </p>
               <p>
                 <input type="submit" value="Create" />

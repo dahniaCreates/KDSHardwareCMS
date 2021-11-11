@@ -1,11 +1,28 @@
-.card-img-top{
-	height: 270px;
+.imagegallery{
+	width: 300px;
 }
 
-.card{
-	width: 320px;
+.singleitemproductname{
+	font-size: 20px;
 }
 
-.itemgallery{
-	height: 320px;
+sub{
+	font-size: 15px;
+}
+
+.singleitemcontainer{
+	margin-top: 40px;
+}
+
+.singleitemimage{
+	height: 400px;
+	width: 400px;
+}
+
+.orderbutton{
+	margin-top: 50px;
+}
+
+.quantityform{
+	margin-top: 40px;
 }

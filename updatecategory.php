@@ -11,7 +11,7 @@
     require('connect.php');
 
     //Call to the script that ensures that the edit page is username and password protected.
-    require 'authenticate.php';
+    //require 'authenticate.php';
 
         if (isset($_GET['id'])){
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
