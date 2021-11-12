@@ -1,3 +1,11 @@
+/*
+    Final Project
+    Name: Dahnia Simon
+    Created on: November 10, 2021
+    Updated on: November 11, 2021
+    Course: WEBD-2008 (213758) Web Development 2
+*/
+
 .imagegallery{
 	width: 300px;
 }
@@ -25,4 +33,34 @@ sub{
 
 .quantityform{
 	margin-top: 40px;
+}
+
+#borderdesign{
+	border-style: solid;
+	background-color: red;
+}
+
+.forminput{
+	margin-bottom:30px;
+}
+
+.formborder{
+	width:50%; 
+	border-style: solid; 
+	padding: 20px; 
+	border-color: grey;
+}
+
+.formbutton{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formheading{
+	text-align: center;
+}
+
+.updelbtn{
+	margin-right: 20px;
 }

@@ -1,23 +1,15 @@
 <!--
     Final Project
     Name: Dahnia Simon
-    Created on: November 3, 2021
+    Created on: November 11, 2021
     Updated on: November 11, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
     session_start();
-
-    require('connect.php');
-
-    $query = "SELECT * FROM categories ORDER BY category_name ASC";
-    $statement = $db->prepare($query);
-
-    $statement->execute(); 
 ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
    <head>
       <meta charset="utf-8">
       <title>KDS Hardware Store</title>
@@ -42,7 +34,7 @@
       </div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
          <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">KDS Hardware</a>
+            <a class="navbar-brand" href="#">KDS Hardware</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
@@ -64,28 +56,37 @@
       </nav>
    </head>
    <body>
-      <div class= "row">
-         <?php while($row = $statement->fetch()): ?>
-         <div class="col-sm-4 mb-4">
-            <div class="card imagegallery">
-               <a href="items.php?id=<?="{$row['id']}"?>">
-               <img class="card-img-top" src="images/<?=$row['images']?>" alt="<?= $row['category_name'] ?> Thumbnail Photo">
-               </a>
-               <div class="card-body">
-                  <h5 class="card-title"><a href="items.php?id=<?="{$row['id']}"?>"><?= $row['category_name'] ?></a></h5>
-                  <?php if(isset($_SESSION['user']) && $_SESSION['role'] == "admin"): ?>
-                  <small>
-                  <a href="updatecategory.php?id=<?="{$row['id']}"?>">Update Category</a>
-                  </small>
-                  <?php endif?>
-               </div>
-            </div>
-         </div>
-         <?php endwhile ?>
+      <div class="container">
+         <div class="row mb-4">
+         <div class="col">
+             <h3>MISSION STATEMENT</h3>
+               <p>
+                  We are dedicated to being the primary provider for all products and services required by our customers,
+                  through excellent and speedy service and high quality products.
+               </p>
+         </div>        
       </div>
-      <?php if(isset($_SESSION['user']) && $_SESSION['role'] == "admin"): ?>
-      <a class="btn btn-primary" href="newcategory.php" role="button">New Category</a>
-      <?php endif?>
+      <div class="row mb-4">
+         <div class="col">
+             <h3>VISION STATEMENT</h3>
+               <p>
+                  We aspire to be recognized as the hardware store of choice for everyone in Canada. 
+               </p>
+         </div>        
+      </div>
+      <div class="row mb-4">
+         <div class="col">
+             <h3>BUSINESS HISTORY</h3>
+               <p>
+                  The KDS Hardware Store was founded in 2016 by Dulliva, Kerine and Dahnia Simon.</br>
+                  The hardware is located in rural Winnipeg and was developed as a means to make hardware
+                  and building products readily available to individuals living outside the city. The business
+                  started out very small but due to support from the community, it has expanded and hired 
+                  five (5) employees.
+               </p>
+         </div>        
+      </div>
+      </div>      
       <footer>
          <div class="conatiner" style="padding-top:80px; background-color:grey; margin-top:20px;">
             <div class="row">
