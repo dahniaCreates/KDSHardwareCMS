@@ -23,6 +23,10 @@
             <?php if(isset($_SESSION['user'])): ?>            
             <?='Welcome back, ' . $_SESSION['user']?>
             <?php endif?>
+            <a class="btn btn-dark" href="register.php" role="button" 
+               <?php if(isset($_SESSION['user'])): ?> style="display:none;" 
+               <?php endif?>>Register
+            </a>
             <a class="btn btn-dark" href="login.php" role="button" 
                <?php if(isset($_SESSION['user'])): ?> style="display:none;" 
                <?php endif?>>Login
