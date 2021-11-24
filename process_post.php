@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 5, 2021
-    Updated on: November 11, 2021
+    Updated on: November 24, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -33,12 +33,13 @@
 	    
 	$valid_upload_detected = isset($_FILES['uploadedfile']) && ($_FILES['uploadedfile']['error'] === 0);
 	$upload_error_detected = isset($_FILES['uploadedfile']) && ($_FILES['uploadedfile']['error'] > 0);
+   $optional_upload = ($_FILES['uploadedfile']['error'] === 4);
 
 	if($_POST)
 	{
 		if($_POST['command'] == 'Update')
 		{			
-	        if (!empty($_POST['category_name']) && isset($_POST['id']) && $valid_upload_detected) {
+	        if (!empty($_POST['category_name']) && isset($_POST['id']) && ($valid_upload_detected)) {
 	            $categoryname  = filter_input(INPUT_POST, 'category_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 	            $id      = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 	            $file_filename        = $_FILES['uploadedfile']['name'];
@@ -49,8 +50,8 @@
 	            		
 			            require('connect.php');
 			           	$image = new \Gumlet\ImageResize($_FILES['uploadedfile']['name']);
-	        			$image->resize(300, 300);
-	        			$image_filename_edited = pathinfo($_FILES['uploadedfile']['name'], PATHINFO_FILENAME). "_categorythumbnail." . pathinfo($_FILES['uploadedfile']['name'], PATHINFO_EXTENSION);
+	        			   $image->resize(300, 300);
+	        			   $image_filename_edited = pathinfo($_FILES['uploadedfile']['name'], PATHINFO_FILENAME). "_categorythumbnail." . pathinfo($_FILES['uploadedfile']['name'], PATHINFO_EXTENSION);
 	            		$image->save('images/'.$image_filename_edited);
 
 			            $query     = "UPDATE categories SET category_name = :categoryname, images = :images WHERE id = :id LIMIT 1";
@@ -68,10 +69,26 @@
 	    		}
 
 	        }
+           else if(!empty($_POST['category_name']) && isset($_POST['id']) && $optional_upload)
+           {
+               $categorynameupload  = filter_input(INPUT_POST, 'category_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+               $id      = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+               require('connect.php');
+               $querytwo = "UPDATE categories SET category_name = :categorynames WHERE id = :id LIMIT 1";
+                     $statement = $db->prepare($querytwo);
+                     $statement->bindValue(':categorynames', $categorynameupload);   
+                     $statement->bindValue(':id', $id, PDO::PARAM_INT);
+                     
+                     $statement->execute();
+               header("Location: products.php");
+               exit;
+           }
 	        else
 	        {
-	        	$error_message = "An error occured while processing your update.";
+               $error_message = "An error occured while trying to update.";
 	        }
+
+
 		}
 		else if($_POST['command'] == 'Delete')
 		{
@@ -125,7 +142,7 @@
       <div>
          <h2><?="{$error_message}"?></h2>
          <p>
-         	An image file must be uploaded and the category name must contain at least one character.
+         	The category name must contain at least one character.
          </p>
          <a href="products.php">Return to Products</a>
       </div>

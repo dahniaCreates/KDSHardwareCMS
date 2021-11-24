@@ -2,11 +2,26 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 1, 2021
-    Updated on: November 11, 2021
+    Updated on: November 24, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
+    require('connect.php');
     session_start();
+
+   if(isset($_SESSION['user']))
+   {
+      $query = "SELECT * FROM users WHERE username = :username";
+      $username = $_SESSION['user'];
+      $statement = $db->prepare($query);
+
+      $statement->bindValue('username', $username);
+      $statement->execute(); 
+
+      $row= $statement->fetch();
+      $customerid = $row['customerid'];
+   }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +65,14 @@
                   <li class="nav-item">
                      <a class="nav-link" href="aboutus.php">About Us</a>
                   </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="alldiys.php">Customers DIYs</a>
+                  </li>
+                   <?php if(isset($_SESSION['user']) && $_SESSION['role'] == "customer"): ?>   
+                  <li class="nav-item">
+                     <a class="nav-link" href="mydiys.php?customerid=<?=$customerid?>">My DIYs</a>
+                  </li>
+               <?php endif?>
                </ul>
                <form class="d-flex">
                   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

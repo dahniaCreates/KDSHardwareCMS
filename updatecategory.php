@@ -75,6 +75,14 @@
                <label for='uploadedfile'>Image filename:</label>
                <input type='file' name='uploadedfile' id='uploadedfile'>
             </div>
+            <?php if(!empty($category['images'])) :?>
+            <div class="forminput">
+               <label for='currentfile'>Current File:<?=$category['images']?></label>
+                <small>
+                     <a href="processimagedelete.php?id=<?=$category['id']?>">Delete Image</a>
+               </small>
+            </div>
+         <?php endif?>
             <div class="forminput formbutton">
                <input type="submit" class="btn btn-primary updelbtn" name="command" value="Update" />
 

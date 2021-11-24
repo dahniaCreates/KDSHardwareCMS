@@ -69,13 +69,13 @@
          <div class="col-sm-4 mb-4">
             <div class="card imagegallery">
                <a href="items.php?id=<?="{$row['id']}"?>">
-               <img class="card-img-top" src="images/<?=$row['images']?>" alt="<?= $row['category_name'] ?> Thumbnail Photo">
+               <img class="card-img-top" src="images/<?=$row['images']?>" alt="<?= $row['category_name'] ?> Thumbnail Photo" onerror="this.onerror=null; this.src='images/noimage.jpg'">
                </a>
                <div class="card-body">
                   <h5 class="card-title"><a href="items.php?id=<?="{$row['id']}"?>"><?= $row['category_name'] ?></a></h5>
                   <?php if(isset($_SESSION['user']) && $_SESSION['role'] == "admin"): ?>
                   <small>
-                  <a href="updatecategory.php?id=<?="{$row['id']}"?>">Update Category</a>
+                     <a href="updatecategory.php?id=<?="{$row['id']}"?>">Update Category</a>
                   </small>
                   <?php endif?>
                </div>
