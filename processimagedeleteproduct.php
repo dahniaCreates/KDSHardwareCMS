@@ -12,7 +12,7 @@
             require('connect.php');
             $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-            $query = "SELECT * FROM categories WHERE id = :id";
+            $query = "SELECT * FROM products WHERE id = :id";
 
             $statement = $db->prepare($query);
             $statement->bindValue(':id', $id, PDO::PARAM_INT);
@@ -26,7 +26,7 @@
                 unlink($filename);
             }
 
-            $querytwo = "UPDATE categories SET images = NULL WHERE id = :id LIMIT 1";
+            $querytwo = "UPDATE products SET images = NULL WHERE id = :id LIMIT 1";
             $statement = $db->prepare($querytwo);
 
             $statement->bindValue(':id', $id, PDO::PARAM_INT);
