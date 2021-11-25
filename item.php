@@ -7,7 +7,21 @@
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
+   session_start();
     require('connect.php');
+
+    if(isset($_SESSION['user']))
+   {
+      $query = "SELECT * FROM users WHERE username = :username";
+      $username = $_SESSION['user'];
+      $statement = $db->prepare($query);
+
+      $statement->bindValue(':username', $username);
+      $statement->execute(); 
+
+      $row= $statement->fetch();
+      $customerid = $row['customerid'];
+   }
     
     if (isset($_GET['id'])) {
       $query = "SELECT * FROM products WHERE id = :id";

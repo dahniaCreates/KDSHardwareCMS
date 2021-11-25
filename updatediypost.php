@@ -10,6 +10,19 @@
     session_start();
     require('connect.php');
 
+       if(isset($_SESSION['user']))
+   {
+      $query = "SELECT * FROM users WHERE username = :username";
+      $username = $_SESSION['user'];
+      $statement = $db->prepare($query);
+
+      $statement->bindValue(':username', $username);
+      $statement->execute(); 
+
+      $row= $statement->fetch();
+      $customerid = $row['customerid'];
+   }
+
         if (isset($_GET['id'])){
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
        
@@ -57,9 +70,9 @@
                <label for='uploadedfile'>Image filename:</label>
                <input type='file' name='uploadedfile' id='uploadedfile'>
             </div>
-             <?php if(!empty($post['images'])) :?>
+             <?php if(!empty($post['image'])) :?>
             <div class="forminput">
-               <label for='currentfile'>Current File:<?=$post['images']?></label>
+               <label for='currentfile'>Current File:<?=$post['image']?></label>
                 <small>
                      <a href="processimagedeletediy.php?id=<?=$post['id']?>">Delete Image</a>
                </small>

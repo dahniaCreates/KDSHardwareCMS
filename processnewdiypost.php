@@ -2,14 +2,14 @@
 
     Final Project
     Name: Dahnia Simon
-    Created on: November 6, 2021
-    Updated on: November 24, 2021
+    Created on: November 25, 2021
+    Updated on: November 25, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php 
 session_start();
 
-   if(isset($_SESSION['user']))
+      if(isset($_SESSION['user']))
    {
       require('connect.php');
       $query = "SELECT * FROM users WHERE username = :username";
@@ -22,7 +22,6 @@ session_start();
       $row= $statement->fetch();
       $customerid = $row['customerid'];
    }
-   
     require('\xampp\htdocs\a\php-image-resize-master\lib\ImageResize.php');
     require('\xampp\htdocs\a\php-image-resize-master\lib\ImageResizeException.php');
 
@@ -51,42 +50,53 @@ session_start();
         $upload_error_detected = isset($_FILES['uploadedfile']) && ($_FILES['uploadedfile']['error'] > 0);
         $optional_upload = ($_FILES['uploadedfile']['error'] === 4);
 
-        if ($_POST && !empty($_POST['category_name']) && $valid_upload_detected){
-        require('connect.php');
+        if ($_POST && !empty($_POST['title']) && !empty($_POST['description']) && $valid_upload_detected){
+                  require('connect.php');
 
-                $categoryname = filter_input(INPUT_POST, 'category_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $title  = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $customerid = filter_input(INPUT_GET, 'customerid', FILTER_SANITIZE_NUMBER_INT);
+
                 $file_filename        = $_FILES['uploadedfile']['name'];
-                $temporary_image_path  = $_FILES['uploadedfile']['tmp_name'];
+                $temporary_image_path = $_FILES['uploadedfile']['tmp_name'];
                 $new_file_path        = file_upload_path($file_filename);
                 if (file_is_valid($temporary_image_path, $new_file_path)) {                        
                         $image = new \Gumlet\ImageResize($_FILES['uploadedfile']['name']);
-                        $image->resize(300, 300);
+                        $image->resize(650, 650);
                         $image_filename_edited = pathinfo($_FILES['uploadedfile']['name'], PATHINFO_FILENAME). "_categorythumbnail." . pathinfo($_FILES['uploadedfile']['name'], PATHINFO_EXTENSION);
                         $image->save('images/'.$image_filename_edited);
         
-                        $query = "INSERT INTO categories(category_name, images) VALUES (:categoryname, :images)"; 
+                        $query = "INSERT INTO diys(title, description, image, customerid) VALUES (:title, :description, :image, :customerid)"; 
                         $statement = $db->prepare($query);
 
-                        $statement->bindValue(":categoryname", $categoryname);
-                        $statement->bindValue(":images", $image_filename_edited);  
+                        $statement->bindValue(":title", $title);
+                        $statement->bindValue(":description", $description);
+                        $statement->bindValue(":image", $image_filename_edited);  
+                        $statement->bindValue(":customerid", $customerid);
 
                         $statement->execute();
 
-                        header("Location: newproductinsert.php");
+                         header("Location: mydiys.php?customerid=$customerid");
                         exit;
                }
       }
-      else if(!empty($_POST['category_name']) && $optional_upload)
+      else if($_POST && !empty($_POST['title']) && !empty($_POST['description']) && $optional_upload)
       {
-         $categorynameupload  = filter_input(INPUT_POST, 'category_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
          require('connect.php');
-         $querytwo = "INSERT INTO categories(category_name) VALUES (:categorynm)";
-               $statement = $db->prepare($querytwo);
-               $statement->bindValue(':categorynm', $categorynameupload);   
+         $title  = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+         $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+         $customerid = filter_input(INPUT_GET, 'customerid', FILTER_SANITIZE_NUMBER_INT);
+
+         $querytwo = "INSERT INTO diys(title, description, customerid) VALUES (:title, :description, :customerid)";
+         $statement = $db->prepare($querytwo);
+         
+         $statement->bindValue(":title", $title);
+         $statement->bindValue(":description", $description);
+         $statement->bindValue(":customerid", $customerid);   
                      
-               $statement->execute();
-               header("Location: products.php");
-               exit;
+         $statement->execute();
+         header("Location: mydiys.php?customerid=$customerid");
+         exit;
      }
      else{
         $error_message = "An error occured while processing your new category insert.";
@@ -102,9 +112,9 @@ session_start();
       <div>
          <h2><?="{$error_message}"?></h2>
          <p>
-            The category name must contain at least one character.
+            The title and description must contain at least one character.
          </p>
-         <a href="products.php">Return to Products</a>
+         <a href="mydiys.php?customerid=<?=$_GET['customerid']?>">Return My DIYs</a>
       </div>
    </body>
 </html>

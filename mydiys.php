@@ -9,9 +9,22 @@
 <?php
     session_start();
     require('connect.php');
+
+   if(isset($_SESSION['user']))
+   {
+      $query = "SELECT * FROM users WHERE username = :username";
+      $username = $_SESSION['user'];
+      $statement = $db->prepare($query);
+
+      $statement->bindValue(':username', $username);
+      $statement->execute(); 
+
+      $row= $statement->fetch();
+      $customerid = $row['customerid'];
+   }
     
     if (isset($_GET['customerid'])) {
-      $query = "SELECT * FROM diys WHERE customerid = :customerid";
+      $query = "SELECT * FROM diys WHERE customerid = :customerid ORDER BY date DESC";
 
       $statement = $db->prepare($query);
       
@@ -19,11 +32,12 @@
       
       $statement->bindValue('customerid', $customerid, PDO::PARAM_INT);
     
-      $statement->execute();      
+      $statement->execute();  
+
 
       if($statement->rowCount() == 0){
 
-        header("Location: createnewdiypost.php");
+        header("Location: newdiypost.php");
         exit;
       }
   }
@@ -35,6 +49,12 @@
     <?php include('header_and_nav.php')?>
    </head>
    <body>
+    <div class = "container">
+       <a class="btn btn-dark" href="newdiypost.php?customerid=<?=$_GET['customerid']?>" role="button" 
+               <?php if(isset($_SESSION['user']) && $_SESSION['role'] != "customer"): ?> style="display:none;" 
+               <?php endif?>>New Post
+        </a>
+    </div>      
       <?php while($row = $statement->fetch()): ?>
                 <?php 
                 /*Retrieves the time_stamp from the fetch statement to the database,
@@ -44,7 +64,7 @@
                     $formatted_date = date('F j,Y, g:i a', $date)
                 ?>
                 <div class="container">
-        <div class="card">
+        <div class="card mt-4">
           <div class="card-body">
               <h4 class="card-title"><?=$row['title']?></h4>
               <p class="card-text"><?=$row['description']?></p>

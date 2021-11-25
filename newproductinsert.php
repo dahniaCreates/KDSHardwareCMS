@@ -10,6 +10,19 @@
    session_start();
    require('connect.php');
 
+    if(isset($_SESSION['user']))
+   {
+      $query = "SELECT * FROM users WHERE username = :username";
+      $username = $_SESSION['user'];
+      $statement = $db->prepare($query);
+
+      $statement->bindValue(':username', $username);
+      $statement->execute(); 
+
+      $row= $statement->fetch();
+      $customerid = $row['customerid'];
+   }
+
   $query = "SELECT * FROM categories";
   $statement = $db->prepare($query);
 

@@ -15,7 +15,7 @@
       $username = $_SESSION['user'];
       $statement = $db->prepare($query);
 
-      $statement->bindValue('username', $username);
+      $statement->bindValue(':username', $username);
       $statement->execute(); 
 
       $row= $statement->fetch();

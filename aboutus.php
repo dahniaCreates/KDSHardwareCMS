@@ -7,6 +7,20 @@
 -->
 <?php
     session_start();
+
+    if(isset($_SESSION['user']))
+   {
+      require 'connect.php';
+      $query = "SELECT * FROM users WHERE username = :username";
+      $username = $_SESSION['user'];
+      $statement = $db->prepare($query);
+
+      $statement->bindValue(':username', $username);
+      $statement->execute(); 
+
+      $row= $statement->fetch();
+      $customerid = $row['customerid'];
+   }
 ?>
 <!DOCTYPE html>
 <html lang="en">

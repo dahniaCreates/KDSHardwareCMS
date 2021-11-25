@@ -6,9 +6,24 @@
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
+    
+    session_start();
     require('connect.php');    
 
-      $query = "SELECT * FROM diys";
+      if(isset($_SESSION['user']))
+      {
+        $query = "SELECT * FROM users WHERE username = :username";
+        $username = $_SESSION['user'];
+        $statement = $db->prepare($query);
+
+        $statement->bindValue(':username', $username);
+        $statement->execute(); 
+
+        $row= $statement->fetch();
+        $customerid = $row['customerid'];
+     }
+
+      $query = "SELECT * FROM diys ORDER BY date DESC";
 
       $statement = $db->prepare($query);
       
@@ -19,8 +34,6 @@
         header("Location: index.php");
         exit;
       }
-
-  session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +51,7 @@
                     $formatted_date = date('F j,Y, g:i a', $date)
                 ?>
         <div class="container">
-        <div class="card">
+        <div class="card mt-4">
           <div class="card-body">
               <h5 class="card-title"><?=$row['title']?></h5>
               <p class="card-text"><?=$row['description']?></p>

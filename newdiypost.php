@@ -2,12 +2,13 @@
 
     Final Project
     Name: Dahnia Simon
-    Created on: November 6, 2021
-    Updated on: November 24, 2021
+    Created on: November 25, 2021
+    Updated on: November 25, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
    session_start();
+   require('connect.php');
 
     if(isset($_SESSION['user']))
    {
@@ -29,13 +30,20 @@
      <?php include('header_and_nav.php')?>
    </head>
    <body>
-      <form class="container formborder" method="post" action="processnewcategory.php" enctype='multipart/form-data'>
+      <form class="container formborder" method="post" action="processnewdiypost.php?customerid=<?= $customerid?>" enctype='multipart/form-data'>
          <fieldset>
-            <h3>Create New Product Category</h3>
+            <h3>Create New DIY Post</h3>
             <div class="forminput">
-               <label for="category_name">Category Name:</label>
-               <input name="category_name" id="category_name" />
+               <label for="title">Title</label>
+               <input name="title" id="title" value="">
             </div>
+            <div class="forminput">
+              <label for="description">Description</label>
+               <textarea class="form-control" name="description" id="description"></textarea>
+            </div>
+           <div class="forminput">
+               <input type="hidden" name="customerid" id="customerid" value="<?= $customerid?>" readonly>
+            </div> 
             <div class="forminput">
                <label for='uploadedfile'>Image filename:</label>
                <input type='file' name='uploadedfile' id='uploadedfile'>
