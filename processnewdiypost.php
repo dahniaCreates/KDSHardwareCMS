@@ -54,7 +54,8 @@ session_start();
                   require('connect.php');
 
                 $title  = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                 //$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS); Removed for WYSIWIG
+                $description = $_POST['description'];
                 $customerid = filter_input(INPUT_GET, 'customerid', FILTER_SANITIZE_NUMBER_INT);
 
                 $file_filename        = $_FILES['uploadedfile']['name'];
@@ -84,7 +85,8 @@ session_start();
       {
          require('connect.php');
          $title  = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-         $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+         //$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS); Removed for WYSIWIG
+         $description = $_POST['description'];
          $customerid = filter_input(INPUT_GET, 'customerid', FILTER_SANITIZE_NUMBER_INT);
 
          $querytwo = "INSERT INTO diys(title, description, customerid) VALUES (:title, :description, :customerid)";

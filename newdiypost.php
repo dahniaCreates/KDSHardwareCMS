@@ -28,6 +28,12 @@
    <head>
       <meta charset="utf-8">
      <?php include('header_and_nav.php')?>
+      <script type="text/javascript" src="tinymce/tinymce.min.js"></script>
+      <script>
+         tinymce.init({
+               selector:'#myEditor'
+            });         
+      </script>
    </head>
    <body>
       <form class="container formborder" method="post" action="processnewdiypost.php?customerid=<?= $customerid?>" enctype='multipart/form-data'>
@@ -39,7 +45,7 @@
             </div>
             <div class="forminput">
               <label for="description">Description</label>
-               <textarea class="form-control" name="description" id="description"></textarea>
+               <textarea class="form-control" name="description" id="myEditor"></textarea>
             </div>
            <div class="forminput">
                <input type="hidden" name="customerid" id="customerid" value="<?= $customerid?>" readonly>

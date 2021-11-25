@@ -57,7 +57,8 @@
 	        if (!empty($_POST['title']) && !empty($_POST['description']) && isset($_POST['id']) && $valid_upload_detected) {
 
 	            $title  = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-	            $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	            //$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS); Removed for WYSIWIG
+	            $description = $_POST['description'];
 	            $id      = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 	            $customerid = filter_input(INPUT_GET, 'customerid', FILTER_SANITIZE_NUMBER_INT);
 
@@ -89,7 +90,8 @@
 	        else if(!empty($_POST['title']) && !empty($_POST['description']) && isset($_POST['id']) && $optional_upload)
            {
                $title  = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-	            $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+	           //$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS); Removed for WYSIWIG
+	            $description = $_POST['description'];
                $id      = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
                $customerid = filter_input(INPUT_POST, 'customerid', FILTER_SANITIZE_NUMBER_INT);
                require('connect.php');

@@ -48,6 +48,12 @@
    <head>
       <meta charset="utf-8">
       <?php include('header_and_nav.php')?>
+      <script type="text/javascript" src="tinymce/tinymce.min.js"></script>
+      <script>
+         tinymce.init({
+               selector:'#myEditor'
+            });         
+      </script>
    </head>
    <body>
       <?php if($id): ?>
@@ -61,7 +67,7 @@
             </div>
             <div class="forminput">
               <label for="description">Description</label>
-               <textarea class="form-control" name="description" id="description"><?= $post['description'] ?></textarea>
+               <textarea class="form-control" name="description" id="myEditor"><?= $post['description'] ?></textarea>
             </div>
            <div class="forminput">
                <input type="hidden" name="customerid" id="customerid" value="<?= $post['customerid'] ?>" readonly>
