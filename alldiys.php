@@ -37,6 +37,7 @@
                     $date = strtotime($timestamp);
                     $formatted_date = date('F j,Y, g:i a', $date)
                 ?>
+        <div class="container">
         <div class="card">
           <div class="card-body">
               <h5 class="card-title"><?=$row['title']?></h5>
@@ -45,6 +46,7 @@
             </div>
             <img class="card-img-bottom" src="images/<?=$row['image']?>" alt="Card image cap" onerror="this.onerror=null; this.src='images/noimage.jpg'">
         </div>
+      </div>
     <?php endwhile ?>
     <?php include('footer.php') ?>
 </body>

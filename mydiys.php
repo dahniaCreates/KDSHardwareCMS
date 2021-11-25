@@ -7,6 +7,7 @@
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
+    session_start();
     require('connect.php');
     
     if (isset($_GET['customerid'])) {
@@ -26,7 +27,6 @@
         exit;
       }
   }
-  session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,14 +43,20 @@
                     $date = strtotime($timestamp);
                     $formatted_date = date('F j,Y, g:i a', $date)
                 ?>
+                <div class="container">
         <div class="card">
           <div class="card-body">
-              <h5 class="card-title"><?=$row['title']?></h5>
+              <h4 class="card-title"><?=$row['title']?></h4>
               <p class="card-text"><?=$row['description']?></p>
               <p class="card-text"><small class="text-muted">Last updated <?=$formatted_date?></small></p>
+              <a class="btn btn-dark" href="updatediypost.php?id=<?="{$row['id']}"?>" role="button" 
+               <?php if(isset($_SESSION['user']) && $_SESSION['role'] != "customer"): ?> style="display:none;" 
+               <?php endif?>>Update Post
+            </a>
             </div>
-            <img class="card-img-bottom" src="images/<?=$row['image']?>" alt="Card image cap">
+            <img class="card-img-bottom" src="images/<?=$row['image']?>" alt="Card image cap" onerror="this.onerror=null; this.src='images/noimage.jpg'">
         </div>
+      </div>
     <?php endwhile ?>
    <?php include('footer.php') ?>
 </body>
