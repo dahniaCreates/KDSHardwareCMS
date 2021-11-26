@@ -41,7 +41,7 @@ if(isset($_POST['submit'])){
    }   
    else
    {
-      header("Location: registration.php?error=All fields are required fields");
+      header("Location: register.php?error=All fields are required fields");
       exit();
    }
 }
