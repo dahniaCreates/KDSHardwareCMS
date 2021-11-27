@@ -60,11 +60,11 @@
          <?php while($row = $statement->fetch()): ?>
          <div class="col-sm-4 mb-4">
             <div class="card imagegallery">
-               <a href="item.php?id=<?="{$row['id']}"?>">
-               <img class="card-img-top" src="images/<?=$row['images']?>" alt="<?= $row['productName'] ?> Image" onerror="this.onerror=null; this.src='images/noimage.jpg'">
+               <a href="/wd2/finalProject/items/item/<?=$row['id']?>">
+               <img class="card-img-top" src="/wd2/finalProject/images/<?=$row['images']?>" alt="<?= $row['productName'] ?> Image" onerror="this.onerror=null; this.src='/wd2/finalProject/images/noimage.jpg'">
                </a>
                <div class="card-body">
-                  <a href="item.php?id=<?="{$row['id']}"?>">
+                  <a href="/wd2/finalProject/items/item/<?=$row['id']?>">
                      <p><?= $row['productName'] ?></p>
                   </a>
                   <h5>$<?= $row['price'] ?></h5>

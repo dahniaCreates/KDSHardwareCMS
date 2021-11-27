@@ -1,3 +1,6 @@
-RewriteEngine on 
-
-RewriteRule ^/?(.*)/([a-zA-Z_]+)$ items.php?id=$1&ctgry=$2 [L]
+RewriteEngine on
+RewriteRule ^home?$ index.php
+RewriteRule ^products?$ products.php
+RewriteRule ^items/([0-9]+) items.php?id=$1
+RewriteRule ^item/([0-9]+) item.php?id=$1
+RewriteRule ^searchresult?$ searchresults.php
