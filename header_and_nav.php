@@ -27,7 +27,7 @@
                <?php endif?>>Login
             </a>
             <?php if(isset($_SESSION['user'])): ?>   
-            <a class="btn btn-dark" href="logout.php" role="button" >Logout</a>
+            <a class="btn btn-dark" href="wd2/finalProject/logout" role="button" >Logout</a>
             <?php endif?>
              </div>
             </div>

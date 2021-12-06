@@ -2,7 +2,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 24, 2021
-    Updated on: November 24, 2021
+    Updated on: December 5, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -31,7 +31,7 @@
 
       if($statement->rowCount() == 0){
 
-        header("Location: index.php");
+        header("Location:/wd2/finalProject/home");
         exit;
       }
 ?>
@@ -57,7 +57,7 @@
               <p class="card-text"><?=$row['description']?></p>
               <p class="card-text"><small class="text-muted">Last updated <?=$formatted_date?></small></p>
             </div>
-            <img class="card-img-bottom" src="images/<?=$row['image']?>" alt="Card image cap" onerror="this.onerror=null; this.src='images/noimage.jpg'">
+            <img class="card-img-bottom" src="/wd2/finalProject/images/<?=$row['image']?>" alt="Card image cap" onerror="this.onerror=null; this.src='/wd2/finalProject/images/noimage.jpg'">
         </div>
       </div>
     <?php endwhile ?>

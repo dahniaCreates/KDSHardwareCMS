@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 24, 2021
-    Updated on: November 24, 2021
+    Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -22,16 +22,16 @@
       $row= $statement->fetch();
       $customerid = $row['customerid'];
 
-      $querytwo = "SELECT * FROM diys WHERE customerid = :customerid";
-      $statementtwo = $db->prepare($querytwo);
+      // $querytwo = "SELECT * FROM diys WHERE customerid = :customerid";
+      // $statementtwo = $db->prepare($querytwo);
 
-      $customerid = filter_input(INPUT_GET, 'customerid', FILTER_SANITIZE_NUMBER_INT);
+      // $customerid = filter_input(INPUT_GET, 'customerid', FILTER_SANITIZE_NUMBER_INT);
 
-      $statementtwo->bindValue('customerid', $customerid, PDO::PARAM_INT);
+      // $statementtwo->bindValue('customerid', $customerid, PDO::PARAM_INT);
 
-      $statementtwo->execute();  
-      $rowselect = $statementtwo->fetch();
-      $title = $rowselect['title'];
+      // $statementtwo->execute();  
+      // $rowselect = $statementtwo->fetch();
+      // $title = $rowselect['title'];
    }
     
     if (isset($_GET['customerid'])) {
@@ -48,7 +48,7 @@
 
       if($statement->rowCount() == 0){
 
-        header("Location: newdiypost.php");
+        header("Location: /wd2/finalProject/newdiypost/$customerid");
         exit;
       }
   }

@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 3, 2021
-    Updated on: November 24, 2021
+    Updated on: December 5, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -42,7 +42,7 @@
       $categoryname = $row_items['category_name'];
 
       if($statement->rowCount() == 0){
-        header("Location: newproductinsert.php");
+        header("Location: /wd2/finalProject/newproductinsert");
         exit;
       }
   }
@@ -70,7 +70,7 @@
                   <h5>$<?= $row['price'] ?></h5>
                   <?php if(isset($_SESSION['user']) && $_SESSION['role'] == "admin"): ?>
                   <small>
-                  <a href="updateproducts.php?id=<?="{$row['id']}"?>">Update</a>
+                  <a href="/wd2/finalProject/updateproducts/<?="{$row['id']}"?>">Update</a>
                   </small>
                   <?php endif?>
                </div>
@@ -80,7 +80,7 @@
       </div>
       <?php if(isset($_SESSION['user']) && $_SESSION['role'] == "admin"): ?>
       <small>
-      <a role="button" class="btn btn-primary" href="newproduct.php?categoryId=<?="{$_GET['id']}"?>">Add Product</a>
+      <a role="button" class="btn btn-primary" href="/wd2/finalProject/newproduct/<?="{$_GET['id']}"?>">Add Product</a>
       </small>
       <?php endif?>
    </div>

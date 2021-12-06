@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 7, 2021
-    Updated on: November 24, 2021
+    Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 
@@ -49,7 +49,7 @@ if(isset($_POST["submit"])){
            $_SESSION['user']=$user_username; 
            $_SESSION['role']= $stored_role; 
 
-           header("Location: index.php");
+           header("Location: /wd2/finalProject/home");
            exit;  
          }
          else if($stored_username != $user_username || $stored_password != $user_password){
@@ -74,7 +74,7 @@ if(isset($_POST["submit"])){
    <body>
       <div class= "container formborder">
          <h3 class="formheading">Login</h3>
-         <form action="login.php" method="post">
+         <form action="/wd2/finalProject/login" method="post">
             <div class="forminput">
                <label for="username">Username</label>
                <input type="text" class="form-control" id="username" name = "username" value= "" placeholder="Enter username">

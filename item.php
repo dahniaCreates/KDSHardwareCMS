@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 10, 2021
-    Updated on: November 24, 2021
+    Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -40,7 +40,7 @@
 
       if($statement->rowCount() == 0){
 
-        header("Location: newproductinsert.php");
+        header("Location: /wd2/finalProject/newproductinsert");
         exit;
       }
   }
@@ -55,7 +55,7 @@
       <div class="container" style="margin-top: 100px">
          <div class="row justify-content-md-center">
             <div class="col">
-               <img class="singleitemimage" src="/wd2/finalProject/images/<?=$image?>" alt="<?= $productname ?> Image" onerror="this.onerror=null; this.src='images/noimage.jpg'">
+               <img class="singleitemimage" src="/wd2/finalProject/images/<?=$image?>" alt="<?= $productname ?> Image" onerror="this.onerror=null; this.src='/wd2/finalProject/images/noimage.jpg'">
             </div>
             <div class="col singleitemcontainer">
                <p class="singleitemproductname"><?= $productname?></p>

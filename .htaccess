@@ -11,3 +11,8 @@ RewriteRule ^login?$ login.php
 RewriteRule ^mydiys/([0-9]+) mydiys.php?customerid=$1
 RewriteRule ^newdiypost/([0-9]+) newdiypost.php?customerid=$1
 RewriteRule ^mydiys/updatediypost/([0-9]+)/([a-zA-Z_]+) updatediypost.php?id=$1&slugtitle=$2
+RewriteRule ^newproductinsert?$ newproductinsert.php
+RewriteRule ^updateproducts/([0-9]+) updateproducts.php?id=$1
+RewriteRule ^newproduct/([0-9]+) newproduct.php?categoryId=$1
+RewriteRule ^logout?$ logout.php
+

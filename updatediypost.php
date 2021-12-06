@@ -25,7 +25,6 @@
 
         if (isset($_GET['id'])){
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-        // $slugtitle = filter_input(INPUT_GET, 'slugtitle', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         $query = "SELECT * FROM diys WHERE id = :id LIMIT 1";
         $statement = $db->prepare($query);
