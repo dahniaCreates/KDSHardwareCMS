@@ -55,7 +55,7 @@
       <div class="container" style="margin-top: 100px">
          <div class="row justify-content-md-center">
             <div class="col">
-               <img class="singleitemimage" src="images/<?=$image?>" alt="<?= $productname ?> Image" onerror="this.onerror=null; this.src='images/noimage.jpg'">
+               <img class="singleitemimage" src="/wd2/finalProject/images/<?=$image?>" alt="<?= $productname ?> Image" onerror="this.onerror=null; this.src='images/noimage.jpg'">
             </div>
             <div class="col singleitemcontainer">
                <p class="singleitemproductname"><?= $productname?></p>

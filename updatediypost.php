@@ -25,7 +25,8 @@
 
         if (isset($_GET['id'])){
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-       
+        // $slugtitle = filter_input(INPUT_GET, 'slugtitle', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
         $query = "SELECT * FROM diys WHERE id = :id LIMIT 1";
         $statement = $db->prepare($query);
        
@@ -48,7 +49,7 @@
    <head>
       <meta charset="utf-8">
       <?php include('header_and_nav.php')?>
-      <script type="text/javascript" src="tinymce/tinymce.min.js"></script>
+      <script type="text/javascript" src="/wd2/finalProject/tinymce/tinymce.min.js"></script>
       <script>
          tinymce.init({
                selector:'#myEditor'
@@ -56,7 +57,7 @@
       </script>
    </head>
    <body>
-      <?php if($id): ?>
+     <!--  <?php if($id): ?> -->
       <form class="container formborder" action="processdiyupdate.php?customerid=<?= $post['customerid'] ?>" method="post" enctype='multipart/form-data'>
          <fieldset>
             <h3>Update or Delete Post</h3>
@@ -67,7 +68,7 @@
             </div>
             <div class="forminput">
               <label for="description">Description</label>
-               <textarea class="form-control" name="description" id="myEditor"><?= $post['description'] ?></textarea>
+               <textarea class="form-control" name="description" id="myEditor"><?=$post['description'] ?></textarea>
             </div>
            <div class="forminput">
                <input type="hidden" name="customerid" id="customerid" value="<?= $post['customerid'] ?>" readonly>
@@ -90,7 +91,7 @@
             </div>
          </fieldset>
       </form>
-      <?php endif?>
+   <!--    <?php endif?> -->
     <?php include('footer.php') ?>
    </body>
 </html>

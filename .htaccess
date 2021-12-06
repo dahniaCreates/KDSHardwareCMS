@@ -2,5 +2,12 @@ RewriteEngine on
 RewriteRule ^home?$ index.php
 RewriteRule ^products?$ products.php
 RewriteRule ^items/([0-9]+) items.php?id=$1
-RewriteRule ^item/([0-9]+) item.php?id=$1
+RewriteRule ^items/item/([0-9]+) item.php?id=$1
 RewriteRule ^searchresult?$ searchresults.php
+RewriteRule ^aboutus?$ aboutus.php
+RewriteRule ^customerdiys?$ alldiys.php
+RewriteRule ^register?$ register.php
+RewriteRule ^login?$ login.php
+RewriteRule ^mydiys/([0-9]+) mydiys.php?customerid=$1
+RewriteRule ^newdiypost/([0-9]+) newdiypost.php?customerid=$1
+RewriteRule ^mydiys/updatediypost/([0-9]+)/([a-zA-Z_]+) updatediypost.php?id=$1&slugtitle=$2

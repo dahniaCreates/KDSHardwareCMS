@@ -21,6 +21,17 @@
 
       $row= $statement->fetch();
       $customerid = $row['customerid'];
+
+      $querytwo = "SELECT * FROM diys WHERE customerid = :customerid";
+      $statementtwo = $db->prepare($querytwo);
+
+      $customerid = filter_input(INPUT_GET, 'customerid', FILTER_SANITIZE_NUMBER_INT);
+
+      $statementtwo->bindValue('customerid', $customerid, PDO::PARAM_INT);
+
+      $statementtwo->execute();  
+      $rowselect = $statementtwo->fetch();
+      $title = $rowselect['title'];
    }
     
     if (isset($_GET['customerid'])) {
@@ -50,7 +61,7 @@
    </head>
    <body>
     <div class = "container">
-       <a class="btn btn-dark" href="newdiypost.php?customerid=<?=$_GET['customerid']?>" role="button" 
+       <a class="btn btn-dark" href="/wd2/finalProject/newdiypost/<?=$customerid?>" role="button" 
                <?php if(isset($_SESSION['user']) && $_SESSION['role'] != "customer"): ?> style="display:none;" 
                <?php endif?>>New Post
         </a>
@@ -61,20 +72,20 @@
                   converts the timestamp to a string and formats it using the date function.*/
                     $timestamp = $row['date']; 
                     $date = strtotime($timestamp);
-                    $formatted_date = date('F j,Y, g:i a', $date)
+                    $formatted_date = date('F j,Y, g:i a', $date);
                 ?>
-                <div class="container">
+      <div class="container">
         <div class="card mt-4">
           <div class="card-body">
               <h4 class="card-title"><?=$row['title']?></h4>
               <p class="card-text"><?=$row['description']?></p>
               <p class="card-text"><small class="text-muted">Last updated <?=$formatted_date?></small></p>
-              <a class="btn btn-dark" href="updatediypost.php?id=<?="{$row['id']}"?>" role="button" 
+              <a class="btn btn-dark" href="/wd2/finalProject/mydiys/updatediypost/<?=$row['id']?>/<?=$row['slugtitle']?>" role="button" 
                <?php if(isset($_SESSION['user']) && $_SESSION['role'] != "customer"): ?> style="display:none;" 
                <?php endif?>>Update Post
             </a>
             </div>
-            <img class="card-img-bottom" src="images/<?=$row['image']?>" alt="Card image cap" onerror="this.onerror=null; this.src='images/noimage.jpg'">
+            <img class="card-img-bottom" src="/wd2/finalProject/images/<?=$row['image']?>" alt="Card image cap" onerror="this.onerror=null; this.src='/wd2/finalProject/images/noimage.jpg'">
         </div>
       </div>
     <?php endwhile ?>
