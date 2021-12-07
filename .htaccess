@@ -10,9 +10,21 @@ RewriteRule ^register?$ register.php
 RewriteRule ^login?$ login.php
 RewriteRule ^mydiys/([0-9]+) mydiys.php?customerid=$1
 RewriteRule ^newdiypost/([0-9]+) newdiypost.php?customerid=$1
+RewriteRule ^newdiypost/processnewdiypost/([0-9]+)?$ processnewdiypost.php?customerid=$1
 RewriteRule ^mydiys/updatediypost/([0-9]+)/([a-zA-Z_]+) updatediypost.php?id=$1&slugtitle=$2
+RewriteRule ^updatediypost/processdiyupdate/([0-9]+)?$ processdiyupdate.php?customerid=$1
 RewriteRule ^newproductinsert?$ newproductinsert.php
 RewriteRule ^updateproducts/([0-9]+) updateproducts.php?id=$1
 RewriteRule ^newproduct/([0-9]+) newproduct.php?categoryId=$1
-RewriteRule ^logout?$ logout.php
+RewriteRule ^updatecategory/([0-9]+) updatecategory.php?id=$1
+RewriteRule ^updatecategory/processcategoryupdate?$ process_post.php
+RewriteRule ^newcategory?$ newcategory.php
+RewriteRule ^newcategory/processnewcategory?$ processnewcategory.php
+RewriteRule ^newproductinsert/processnewproductinsert?$ processnewproductinsert.php
+RewriteRule ^newproduct/processnewproduct?$ processnewproduct.php
+RewriteRule ^updateproducts/processproductupdate?$ process_productupdate.php
+RewriteRule ^updatecategory/processimagedelete/([0-9]+) processimagedelete.php?id=$1
+RewriteRule ^updatediypost/processimagedeletediy/([0-9]+) processimagedeletediy.php?id=$1
+RewriteRule ^updateproducts/processimagedeleteproduct/([0-9]+) processimagedeleteproduct.php?id=$1
+
 

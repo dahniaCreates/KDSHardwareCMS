@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 7, 2021
-    Updated on: November 24, 2021
+    Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -85,7 +85,7 @@
 
 			            $statement->execute();
 
-			            header("Location: products.php");
+			            header("Location: /wd2/finalProject/products");
 			            exit;
 			      }
 	         }
@@ -104,7 +104,7 @@
                      $statement->bindValue(':id', $id, PDO::PARAM_INT);
                      
                      $statement->execute();
-               header("Location: products.php");
+               header("Location: /wd2/finalProject/products");
                exit;
            }
 	        else
@@ -125,7 +125,7 @@
 
             $statement->execute();
             
-            header("Location: products.php");
+            header("Location: /wd2/finalProject/products");
             exit;
 		}
 	}	
@@ -134,7 +134,7 @@
 <html lang="en">
    <head>
       <meta charset="utf-8">
-     <?php include('header_and_nav.php')?>
+     <?php include('subpage_nav.php')?>
    </head>
    <body>
       <div>
@@ -142,7 +142,7 @@
          <p>
          	The product name and price must contain at least one character.
          </p>
-         <a href="products.php">Return to Products</a>
+         <a href="/wd2/finalProject/products">Return to Products</a>
       </div>
    </body>
 </html>

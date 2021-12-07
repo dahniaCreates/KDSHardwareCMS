@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 6, 2021
-    Updated on: November 24, 2021
+    Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -27,10 +27,10 @@
 <html lang="en">
    <head>
       <meta charset="utf-8">
-     <?php include('header_and_nav.php')?>
+     <?php include('subpage_nav.php')?>
    </head>
    <body>
-      <form class="container formborder" method="post" action="processnewcategory.php" enctype='multipart/form-data'>
+      <form class="container formborder" method="post" action="/wd2/finalProject/newcategory/processnewcategory" enctype='multipart/form-data'>
          <fieldset>
             <h3>Create New Product Category</h3>
             <div class="forminput">
@@ -42,7 +42,7 @@
                <input type='file' name='uploadedfile' id='uploadedfile'>
             </div>
             <div class="formbutton">
-               <button type="submit" class="btn btn-primary" name="submit">Create</button>
+               <button type="submit" class="btn btn-dark" name="submit">Create</button>
             </div>
          </fieldset>
       </form>

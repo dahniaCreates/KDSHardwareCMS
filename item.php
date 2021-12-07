@@ -49,7 +49,7 @@
 <html>
    <head>
       <meta charset="utf-8">
-      <?php include('header_and_nav.php')?>
+      <?php include('subpage_nav.php')?>
    </head>
    <body>
       <div class="container" style="margin-top: 100px">

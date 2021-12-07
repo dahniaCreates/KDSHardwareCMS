@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 25, 2021
-    Updated on: November 25, 2021
+    Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php 
@@ -77,7 +77,7 @@ session_start();
 
                         $statement->execute();
 
-                         header("Location: mydiys.php?customerid=$customerid");
+                         header("Location: /wd2/finalProject/mydiys/$customerid");
                         exit;
                }
       }
@@ -97,7 +97,7 @@ session_start();
          $statement->bindValue(":customerid", $customerid);   
                      
          $statement->execute();
-         header("Location: mydiys.php?customerid=$customerid");
+         header("Location:  /wd2/finalProject/mydiys/$customerid");
          exit;
      }
      else{
@@ -108,7 +108,7 @@ session_start();
 <html lang="en">
    <head>
       <meta charset="utf-8">
-       <?php include('header_and_nav.php')?>
+       <?php include('subpage_nav.php')?>
    </head>
    <body>
       <div>
@@ -116,7 +116,7 @@ session_start();
          <p>
             The title and description must contain at least one character.
          </p>
-         <a href="mydiys.php?customerid=<?=$_GET['customerid']?>">Return My DIYs</a>
+         <a href=" /wd2/finalProject/mydiys/<?=$_GET['customerid']?>">Return My DIYs</a>
       </div>
    </body>
 </html>

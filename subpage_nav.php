@@ -1,7 +1,7 @@
 <!--
     Final Project
     Name: Dahnia Simon
-    Created on: November 24, 2021
+    Created on: December 05, 2021
     Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
@@ -26,9 +26,6 @@
                <?php if(isset($_SESSION['user'])): ?> style="display:none;" 
                <?php endif?>>Login
             </a>
-            <?php if(isset($_SESSION['user'])): ?>   
-            <a class="btn btn-dark" href="logout.php" role="button" >Logout</a>
-            <?php endif?>
              </div>
             </div>
          </div>

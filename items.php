@@ -2,8 +2,8 @@
 
     Final Project
     Name: Dahnia Simon
-    Created on: November 3, 2021
-    Updated on: December 5, 2021
+    Created on: November 03, 2021
+    Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -51,7 +51,7 @@
 <html>
    <head>
       <meta charset="utf-8">
-     <?php include('header_and_nav.php')?>
+     <?php include('subpage_nav.php')?>
    </head>
    <body>
       <h2><?=$categoryname?></h2>

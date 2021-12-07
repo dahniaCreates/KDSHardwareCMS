@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 24, 2021
-    Updated on: November 24, 2021
+    Updated on: Dcemeber 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -83,7 +83,7 @@
 
 			            $statement->execute();
 
-			            header("Location: mydiys.php?customerid=$customerid");
+			            header("Location: /wd2/finalProject/mydiys/$customerid");
 			            exit;
 			      }
 	         }
@@ -102,7 +102,7 @@
                      $statement->bindValue(':id', $id, PDO::PARAM_INT);
                      
                      $statement->execute();
-               header("Location: mydiys.php?customerid=$customerid");
+               header("Location: /wd2/finalProject/mydiys/$customerid");
                exit;
            }
 	        else
@@ -123,7 +123,7 @@
 
             $statement->execute();
             
-            header("Location: mydiys.php?customerid=$customerid");
+            header("Location: /wd2/finalProject/mydiys/$customerid");
             exit;
 		}
 	}	
@@ -132,7 +132,7 @@
 <html lang="en">
    <head>
       <meta charset="utf-8">
-     <?php include('header_and_nav.php')?>
+     <?php include('subpage_nav.php')?>
    </head>
    <body>
       <div>
@@ -140,7 +140,7 @@
          <p>
          	The title and decription must contain at least one character.
          </p>
-         <a href="mydiys.php?customerid=<?=$_GET['customerid']?>">Return to My DIYs</a>
+         <a href="/wd2/finalProject/mydiys/<?=$_GET['customerid']?>">Return to My DIYs</a>
       </div>
    </body>
 </html>

@@ -2,7 +2,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 3, 2021
-    Updated on: November 24, 2021
+    Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -45,10 +45,10 @@
                <img class="card-img-top" src="images/<?=$row['images']?>" alt="<?= $row['category_name'] ?> Thumbnail Photo" onerror="this.onerror=null; this.src='images/noimage.jpg'">
                </a>
                <div class="card-body">
-                  <h5 class="card-title"><a href="/wd2/finalProject/items/<?=$row['id']?>"><?= $row['category_name'] ?></a></h5>
+                  <h5 class="card-title"><a href="/wd2/finalProject/items/<?=$row['id']?>" style="text-decoration: none; color: #000;"><?= $row['category_name'] ?></a></h5>
                   <?php if(isset($_SESSION['user']) && $_SESSION['role'] == "admin"): ?>
                   <small>
-                     <a href="updatecategory.php?id=<?="{$row['id']}"?>">Update Category</a>
+                     <a href="/wd2/finalProject/updatecategory/<?=$row['id']?>" class="btn btn-dark" role="button">Update Category</a>
                   </small>
                   <?php endif?>
                </div>
@@ -57,7 +57,7 @@
          <?php endwhile ?>
       </div>
       <?php if(isset($_SESSION['user']) && $_SESSION['role'] == "admin"): ?>
-      <a class="btn btn-primary" href="newcategory.php" role="button">New Category</a>
+      <a class="btn btn-dark" href="/wd2/finalProject/newcategory" role="button">New Category</a>
       <?php endif?>
    </div>
      <?php include('footer.php') ?>

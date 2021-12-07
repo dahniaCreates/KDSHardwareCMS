@@ -2,7 +2,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 24, 2021
-    Updated on: December 5, 2021
+    Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php

@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 6, 2021
-    Updated on: November 24, 2021
+    Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php 
@@ -72,7 +72,7 @@ session_start();
 
                         $statement->execute();
 
-                        header("Location: newproductinsert.php");
+                        header("Location: /wd2/finalProject/newproductinsert");
                         exit;
                }
       }
@@ -85,7 +85,7 @@ session_start();
                $statement->bindValue(':categorynm', $categorynameupload);   
                      
                $statement->execute();
-               header("Location: products.php");
+               header("Location: /wd2/finalProject/products");
                exit;
      }
      else{
@@ -104,7 +104,7 @@ session_start();
          <p>
             The category name must contain at least one character.
          </p>
-         <a href="products.php">Return to Products</a>
+         <a href="/wd2/finalProject/products">Return to Products</a>
       </div>
    </body>
 </html>

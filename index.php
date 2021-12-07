@@ -39,7 +39,7 @@
                The KDS Hardware prides itself on supplying difficult to find products to meet all the needs its customers.</br>
                We carry items to improve every room in your homes; from gardening supplies, to lumber, paints, tools, fixtures and more. 
                <div style="margin-top: 60px;">
-                  <a role="button" href="/wd2/finalProject/products" class="btn btn-primary" style="padding:12px;">Shop Now</a>
+                  <a role="button" href="/wd2/finalProject/products" class="btn btn-dark" style="padding:12px;">Shop Now</a>
                </div>
             </div>
             <div class="col">

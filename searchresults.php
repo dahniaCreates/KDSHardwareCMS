@@ -1,3 +1,11 @@
+<!--
+
+    Final Project
+    Name: Dahnia Simon
+    Created on: November 27, 2021
+    Updated on: December 06, 2021
+    Course: WEBD-2008 (213758) Web Development 2
+-->
 <?php
     require('connect.php');
     session_start();
@@ -28,7 +36,7 @@
 <html lang="en">
    <head>
    <meta charset="utf-8">
-   <?php include('header_and_nav.php')?>
+   <?php include('subpage_nav.php')?>
    </head>
   <body>
    <?php while($row = $statement->fetch()):?>

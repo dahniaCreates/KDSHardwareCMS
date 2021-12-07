@@ -21,17 +21,6 @@
 
       $row= $statement->fetch();
       $customerid = $row['customerid'];
-
-      // $querytwo = "SELECT * FROM diys WHERE customerid = :customerid";
-      // $statementtwo = $db->prepare($querytwo);
-
-      // $customerid = filter_input(INPUT_GET, 'customerid', FILTER_SANITIZE_NUMBER_INT);
-
-      // $statementtwo->bindValue('customerid', $customerid, PDO::PARAM_INT);
-
-      // $statementtwo->execute();  
-      // $rowselect = $statementtwo->fetch();
-      // $title = $rowselect['title'];
    }
     
     if (isset($_GET['customerid'])) {
@@ -57,7 +46,7 @@
 <html lang="en">
    <head>
       <meta charset="utf-8">
-    <?php include('header_and_nav.php')?>
+    <?php include('subpage_nav.php')?>
    </head>
    <body>
     <div class = "container">

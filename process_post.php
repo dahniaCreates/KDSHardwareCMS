@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 5, 2021
-    Updated on: November 24, 2021
+    Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -58,7 +58,7 @@ session_start();
 	            $categoryname  = filter_input(INPUT_POST, 'category_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 	            $id      = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 	            $file_filename        = $_FILES['uploadedfile']['name'];
-	        	$temporary_image_path  = $_FILES['uploadedfile']['tmp_name'];
+	        	   $temporary_image_path  = $_FILES['uploadedfile']['tmp_name'];
 	         	$new_file_path        = file_upload_path($file_filename);
 	         	if (file_is_valid($temporary_image_path, $new_file_path)) {	            		
 			            require('connect.php');
@@ -75,7 +75,7 @@ session_start();
 			            
 			            $statement->execute();
 			            
-			            header("Location: products.php");
+			            header("Location: /wd2/finalProject/products");
 			            exit;
 	    		}
 
@@ -91,7 +91,7 @@ session_start();
                      $statement->bindValue(':id', $id, PDO::PARAM_INT);
                      
                      $statement->execute();
-               header("Location: products.php");
+               header("Location: /wd2/finalProject/products");
                exit;
            }
 	        else
@@ -114,7 +114,7 @@ session_start();
             
             $statement->execute();
             
-            header("Location: index.php");
+            header("Location: /wd2/finalProject/home");
 		}
 	}	
 ?>
@@ -122,7 +122,7 @@ session_start();
 <html lang="en">
    <head>
       <meta charset="utf-8">
-      <?php include('header_and_nav.php')?>
+      <?php include('subpage_nav.php')?>
    </head>
    <body>
       <div>
@@ -130,7 +130,7 @@ session_start();
          <p>
          	The category name must contain at least one character.
          </p>
-         <a href="products.php">Return to Products</a>
+         <a href="/wd2/finalProject/products">Return to Products</a>
       </div>        
    </body>
 </html>

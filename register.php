@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 23, 2021
-    Updated on: November 24, 2021
+    Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 
@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
 
       $statement->execute();
        
-      header("Location: login.php");
+      header("Location: /wd2/finalProject/home");
       exit;          
    }   
    else
@@ -83,7 +83,7 @@ if(isset($_POST['submit'])){
                <?php endif?>
             </div>
             <div class="formbutton">
-               <button type="submit" class="btn btn-primary" name="submit">Register</button>
+               <button type="submit" class="btn btn-dark" name="submit">Register</button>
             </div>
          </form>
       </div>

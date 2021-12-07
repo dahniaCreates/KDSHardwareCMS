@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 6, 2021
-    Updated on: November 24, 2021
+    Updated on: December 05, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -39,7 +39,7 @@
       $categoryName = $row['category_name']; 
 
       if($statement->rowCount() == 0){
-        header("Location: index.php");
+        header("Location: /wd2/finalProject/home");
         exit;
       }
   }
@@ -49,10 +49,10 @@
 <html lang="en">
    <head>
       <meta charset="utf-8">
-       <?php include('header_and_nav.php')?>
+       <?php include('subpage_nav.php')?>
    </head>
    <body>
-      <form class="container formborder" method="post" action="processnewproduct.php" enctype='multipart/form-data'>
+      <form class="container formborder" method="post" action="/wd2/finalProject/newproduct/processnewproduct" enctype='multipart/form-data'>
          <fieldset>
             <h3>Create New Product for <?=$categoryName?></h3>
             <div class="forminput">

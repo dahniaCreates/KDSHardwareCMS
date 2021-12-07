@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 25, 2021
-    Updated on: November 25, 2021
+    Updated on: December 06, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -27,8 +27,8 @@
 <html lang="en">
    <head>
       <meta charset="utf-8">
-     <?php include('header_and_nav.php')?>
-      <script type="text/javascript" src="tinymce/tinymce.min.js"></script>
+     <?php include('subpage_nav.php')?>
+      <script type="text/javascript" src="/wd2/finalProject/tinymce/tinymce.min.js"></script>
       <script>
          tinymce.init({
                selector:'#myEditor'
@@ -36,7 +36,7 @@
       </script>
    </head>
    <body>
-      <form class="container formborder" method="post" action="processnewdiypost.php?customerid=<?= $customerid?>" enctype='multipart/form-data'>
+      <form class="container formborder" method="post" action="/wd2/finalProject/newdiypost/processnewdiypost/<?=$customerid?>" enctype='multipart/form-data'>
          <fieldset>
             <h3>Create New DIY Post</h3>
             <div class="forminput">
@@ -55,7 +55,7 @@
                <input type='file' name='uploadedfile' id='uploadedfile'>
             </div>
             <div class="formbutton">
-               <button type="submit" class="btn btn-primary" name="submit">Create</button>
+               <button type="submit" class="btn btn-dark" name="submit">Create</button>
             </div>
          </fieldset>
       </form>

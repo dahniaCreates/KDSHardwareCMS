@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 4, 2021
-    Updated on: November 24, 2021
+    Updated on: December 06, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -35,7 +35,7 @@
         $category = $statement->fetch();
 
         if($statement->rowCount() == 0){
-        header("Location: products.php");
+        header("Location: /wd2/finalProject/products");
         exit;
         }
     }
@@ -47,11 +47,11 @@
 <html lang="en">
    <head>
       <meta charset="utf-8">
-      <?php include('header_and_nav.php')?>
+      <?php include('subpage_nav.php')?>
    </head>
    <body>
       <?php if($id): ?>
-      <form class="container formborder" action="process_post.php" method="post" enctype='multipart/form-data'>
+      <form class="container formborder" action="/wd2/finalProject/updatecategory/processcategoryupdate" method="post" enctype='multipart/form-data'>
          <fieldset>
             <h3>Update or Delete Category</h3>
             <input type="hidden" name="id" value="<?= $category['id'] ?>">
@@ -65,16 +65,18 @@
             </div>
             <?php if(!empty($category['images'])) :?>
             <div class="forminput">
-               <label for='currentfile'>Current File:<?=$category['images']?></label>
+               <label for='currentfile'>Current Image:
+                  <img src="/wd2/finalProject/images/<?=$category['images']?>" style="width: 100px; height: 100px;" alt="<?$category['images']?> Photo" onerror="this.onerror=null; this.src='images/noimage.jpg'">                     
+                  </label>
                 <small>
-                     <a href="processimagedelete.php?id=<?=$category['id']?>">Delete Image</a>
+                     <a href="/wd2/finalProject/updatecategory/processimagedelete/<?=$category['id']?>">Delete Image</a>
                </small>
             </div>
          <?php endif?>
             <div class="forminput formbutton">
-               <input type="submit" class="btn btn-primary updelbtn" name="command" value="Update" />
+               <input type="submit" class="btn btn-dark updelbtn" name="command" value="Update" />
 
-               <input type="submit" class="btn btn-primary updelbtn" name="command" value="Delete" onclick= "return confirm('Are you sure you wish to delete this category?')" />
+               <input type="submit" class="btn btn-dark updelbtn" name="command" value="Delete" onclick= "return confirm('Are you sure you wish to delete this category?')" />
             </div>
          </fieldset>
       </form>
