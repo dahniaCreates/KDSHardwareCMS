@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 24, 2021
-    Updated on: December 05, 2021
+    Updated on: December 06, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -50,7 +50,7 @@
    </head>
    <body>
     <div class = "container">
-       <a class="btn btn-dark" href="/wd2/finalProject/newdiypost/<?=$customerid?>" role="button" 
+       <a class="btn btn-dark" href="/wd2/finalProject/newdiypost/<?=$customerid?>" role="button" style="margin-left: 165px;"
                <?php if(isset($_SESSION['user']) && $_SESSION['role'] != "customer"): ?> style="display:none;" 
                <?php endif?>>New Post
         </a>
@@ -63,7 +63,7 @@
                     $date = strtotime($timestamp);
                     $formatted_date = date('F j,Y, g:i a', $date);
                 ?>
-      <div class="container">
+      <div class="container" style="width:60%;">
         <div class="card mt-4">
           <div class="card-body">
               <h4 class="card-title"><?=$row['title']?></h4>
@@ -74,7 +74,7 @@
                <?php endif?>>Update Post
             </a>
             </div>
-            <img class="card-img-bottom" src="/wd2/finalProject/images/<?=$row['image']?>" alt="Card image cap" onerror="this.onerror=null; this.src='/wd2/finalProject/images/noimage.jpg'">
+            <img class="card-img-bottom" src="/wd2/finalProject/images/<?=$row['image']?>"  style="height: 500px" alt="Card image cap" onerror="this.onerror=null; this.src='/wd2/finalProject/images/noimage.jpg'">
         </div>
       </div>
     <?php endwhile ?>

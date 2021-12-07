@@ -26,5 +26,6 @@ RewriteRule ^updateproducts/processproductupdate?$ process_productupdate.php
 RewriteRule ^updatecategory/processimagedelete/([0-9]+) processimagedelete.php?id=$1
 RewriteRule ^updatediypost/processimagedeletediy/([0-9]+) processimagedeletediy.php?id=$1
 RewriteRule ^updateproducts/processimagedeleteproduct/([0-9]+) processimagedeleteproduct.php?id=$1
+RewriteRule ^searcherror?$ searcherror.php
 
 

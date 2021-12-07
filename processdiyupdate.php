@@ -3,7 +3,7 @@
     Final Project
     Name: Dahnia Simon
     Created on: November 24, 2021
-    Updated on: Dcemeber 05, 2021
+    Updated on: Dcemeber 06, 2021
     Course: WEBD-2008 (213758) Web Development 2
 -->
 <?php
@@ -70,7 +70,7 @@
 			            require('connect.php');
 
 			         $image = new \Gumlet\ImageResize($_FILES['uploadedfile']['name']);
-	        			$image->resize(650, 650);
+	        			$image->resize(400, 400);
 	        			$image_filename_edited = pathinfo($_FILES['uploadedfile']['name'], PATHINFO_FILENAME). "_categorythumbnail." . pathinfo($_FILES['uploadedfile']['name'], PATHINFO_EXTENSION);
 	            		$image->save('images/'.$image_filename_edited);
 

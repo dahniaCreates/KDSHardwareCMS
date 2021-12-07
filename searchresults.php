@@ -30,6 +30,13 @@
    $statement->bindValue(':searchword', '%'.$searchword.'%');
    $statement->execute();
 
+   if($statement->rowCount() == 0)
+   {
+
+        header("Location: /wd2/finalProject/searcherror");
+        exit;
+   }
+
    
 ?>
 <!DOCTYPE html>
@@ -41,7 +48,8 @@
   <body>
    <?php while($row = $statement->fetch()):?>
       <div class="container" style="margin-top: 100px">
-         <div class="row justify-content-md-center">
+         <div class="row justify-content-md-center" style="border-style: solid; padding: 20px; 
+         border-color: grey;">
             <div class="col">
                <img class="singleitemimage" src="/wd2/finalProject/images/<?=$row['images']?>" alt="<?= $row['productName']?> Image" onerror="this.onerror=null; this.src='/wd2/finalProject/images/noimage.jpg'">
             </div>

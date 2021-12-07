@@ -56,24 +56,24 @@
             <h3>Update or Delete Product</h3>
             <input type="hidden" name="id" value="<?= $product['id'] ?>">
             <div class="forminput">
-               <label for="productName">Product Name</label>
+               <label for="productName" style="display: inline-block; width:150px;">Product Name</label>
                <input name="productName" id="productName" value="<?= $product['productName'] ?>">
             </div>
             <div class="forminput">
-               <label for="price">Price</label>
+               <label for="price" style="display: inline-block; width:150px;">Price</label>
                <input name="price" id="price" value="<?= $product['price'] ?>">
             </div>
             <div class="forminput">
                <input type="hidden" name="categoryId" id="categoryId" value="<?= $product['categoryId'] ?>" readonly>
             </div>
             <div class="forminput">
-               <label for='uploadedfile'>Image filename:</label>
+               <label for='uploadedfile' style="display: inline-block; width:150px;">Image filename:</label>
                <input type='file' name='uploadedfile' id='uploadedfile'>
             </div>
              <?php if(!empty($product['images'])) :?>
             <div class="forminput">
-               <label for='currentfile'>
-                  Current Image:<img src="/wd2/finalProject/images/<?=$product['images']?>" alt="<?=$product['images']?> Photo" style="width: 100px; height: 100px;" onerror="this.onerror=null; this.src='images/noimage.jpg'">                     
+               <label for='currentfile' >
+                  Current Image:<img src="/wd2/finalProject/images/<?=$product['images']?>" alt="<?=$product['images']?> Photo" style="width: 100px; height: 100px; margin-left: 50px" onerror="this.onerror=null; this.src='images/noimage.jpg'">                     
                </label>
                 <small>
                      <a href="/wd2/finalProject/updateproducts/processimagedeleteproduct/<?=$product['id']?>">Delete Image</a>
